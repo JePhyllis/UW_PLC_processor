@@ -1,0 +1,34 @@
+{
+  "shard_id": "prog_logic_001",
+  "shard_type": "program_logic",
+  "elements": [
+    {
+      "name": "TempControl",
+      "type": "Program",
+      "content": "        <Program Name=\"TempControl\">\n            <Code>\n                // 温度控制逻辑\n                IF TempSensor_1 > 80.0 THEN\n                    AlarmActive := TRUE;\n                END_IF;\n                \n                // 电机控制\n                IF NOT AlarmActive THEN\n                    MotorStatus := TRUE;\n                ELSE\n                    MotorStatus := FALSE;\n                END_IF;\n            </Code>\n        </Program>",
+      "dependencies": [
+        "80"
+      ],
+      "line_start": 18,
+      "line_end": 32,
+      "size_estimate": 252
+    },
+    {
+      "name": "PressureMonitor",
+      "type": "Program",
+      "content": "        <Program Name=\"PressureMonitor\">\n            <Code>\n                // 压力监控逻辑\n                IF PressureSensor_1 > 5.0 THEN\n                    // 需要添加压力报警\n                    // TODO: 实现压力超限报警\n                END_IF;\n            </Code>\n        </Program>",
+      "dependencies": [],
+      "line_start": 34,
+      "line_end": 42,
+      "size_estimate": 162
+    }
+  ],
+  "context_info": {},
+  "dependencies": [
+    "80"
+  ],
+  "line_start": 18,
+  "line_end": 42,
+  "total_lines": 24,
+  "token_estimate": 414
+}

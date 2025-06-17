@@ -1,0 +1,11 @@
+{
+  "analysis_type": "alarm",
+  "findings": [],
+  "summary": "分析未能完成: 所有分析都失败了",
+  "overall_confidence": 0.0,
+  "statistics": {},
+  "processing_info": {
+    "error": "所有分析都失败了"
+  },
+  "timestamp": "2025-06-17T14:59:47.910755"
+}

@@ -1,0 +1,168 @@
+{
+  "analysis_type": "alarm",
+  "findings": [
+    {
+      "type": "safety_issue",
+      "severity": "critical",
+      "location": "安全系统",
+      "description": "完全缺少安全相关报警（如急停、安全门、光栅状态）。安全报警缺失违反工业安全标准（IEC 61508和ISO 13849），可能导致人员伤害或重大事故，因为代码中无任何安全设备变量或逻辑。",
+      "recommendation": "添加安全报警逻辑，包括急停按钮、安全门开关和光栅传感器的监控；实现独立的安全回路并设置高优先级报警，符合ISO 13849的性能等级要求。",
+      "confidence": 0.85,
+      "source_shards": [
+        "data_def_001"
+      ],
+      "frequency": 1
+    },
+    {
+      "type": "safety_issue",
+      "severity": "critical",
+      "location": "整体系统",
+      "description": "代码中完全缺失安全相关报警（如急停、安全门或光栅）和系统级报警（如I/O故障或通信中断）。这违反工业安全标准（IEC 61508），可能导致紧急事件无法及时响应。",
+      "recommendation": "集成安全PLC模块，添加急停按钮逻辑、安全门状态监控和光栅中断报警；实现系统级心跳检测和I/O诊断报警；执行HAZOP分析识别关键风险点。",
+      "confidence": 0.8,
+      "source_shards": [
+        "prog_logic_001"
+      ],
+      "frequency": 1
+    },
+    {
+      "type": "missing_alarm",
+      "severity": "high",
+      "location": "PressureMonitor 程序中的压力监控逻辑",
+      "description": "压力传感器PressureSensor_1已读取，但无压力超限报警实现（代码包含TODO注释）。缺少压力高报警（>5.0单位）和压力低报警，可能导致过程失控或设备损坏风险。",
+      "recommendation": "立即实现压力高报警（>5.0）和压力低报警（如<1.0）；添加报警响应逻辑（如自动泄压或停机）；根据过程安全要求设置多级报警阈值。",
+      "confidence": 0.95,
+      "source_shards": [
+        "prog_logic_001"
+      ],
+      "frequency": 1
+    },
+    {
+      "type": "logic_error",
+      "severity": "high",
+      "location": "TempControl 程序中的电机控制逻辑",
+      "description": "电机状态直接依赖AlarmActive，但未处理传感器故障场景。如果TempSensor_1失效（如值漂移或通信中断），可能导致误报警或危险运行，违反IEC 61508安全层原则。",
+      "recommendation": "引入传感器故障诊断逻辑（例如超时检查或合理性验证）；添加故障安全机制，如传感器失效时强制停机或降级运行；参考ISO 13849增加冗余检测。",
+      "confidence": 0.9,
+      "source_shards": [
+        "prog_logic_001"
+      ],
+      "frequency": 1
+    },
+    {
+      "type": "missing_alarm",
+      "severity": "high",
+      "location": "温度检测逻辑",
+      "description": "检测到温度传感器变量TempSensor_1（类型REAL），但缺少温度超限报警逻辑。过程报警如高温或低温报警未实现，可能导致过程失控或设备损坏，违反过程安全要求（如ISA-18.2标准要求关键过程变量应有报警）。",
+      "recommendation": "添加温度高报警（例如>80°C）和温度低报警（例如<10°C），并利用AlarmConfig数据类型进行限值配置和使能控制，确保符合ISA-18.2报警管理最佳实践。",
+      "confidence": 0.9,
+      "source_shards": [
+        "data_def_001"
+      ],
+      "frequency": 1
+    },
+    {
+      "type": "missing_alarm",
+      "severity": "high",
+      "location": "压力控制回路",
+      "description": "检测到压力传感器变量PressureSensor_1（类型REAL），但缺少压力超限报警逻辑。过程报警如高压或低压报警缺失，可能导致系统过压或欠压风险，违反设备保护需求和过程安全要求（IEC 61508强调过程变量监控）。",
+      "recommendation": "添加压力高报警（例如>10 bar）和压力低报警（例如<2 bar），实例化AlarmConfig数据类型以设置限值，并集成到PLC逻辑中，定期校验设定值。",
+      "confidence": 0.9,
+      "source_shards": [
+        "data_def_001"
+      ],
+      "frequency": 1
+    },
+    {
+      "type": "logic_error",
+      "severity": "medium",
+      "location": "报警配置",
+      "description": "定义了AlarmConfig数据类型（包含HighLimit、LowLimit和Enabled成员），但未实例化或用于任何传感器。这表明报警配置不完整，可能导致报警逻辑不可配置或不可靠，违反ISA-18.2标准的报警可管理性原则。",
+      "recommendation": "为每个传感器（如TempSensor_1和PressureSensor_1）创建AlarmConfig实例变量，并在PLC逻辑中实现限值比较和使能控制；添加系统级报警配置，如通信故障监控。",
+      "confidence": 0.9,
+      "source_shards": [
+        "data_def_001"
+      ],
+      "frequency": 1
+    },
+    {
+      "type": "existing_alarm",
+      "severity": "medium",
+      "location": "TempControl 程序中的温度检测逻辑",
+      "description": "检测到温度高报警（TempSensor_1 > 80.0°C），用于触发AlarmActive并停止电机，但报警配置不完整。缺少温度高高报警（如>95°C）和传感器故障检测，且无报警优先级或复位机制。",
+      "recommendation": "添加温度高高报警阈值（>95°C）以增强过程安全；实现传感器健康检查（如范围超限或通信故障报警）；遵循ISA-18.2标准设置报警死区和确认逻辑。",
+      "confidence": 0.85,
+      "source_shards": [
+        "prog_logic_001"
+      ],
+      "frequency": 1
+    },
+    {
+      "type": "missing_alarm",
+      "severity": "medium",
+      "location": "电机控制逻辑",
+      "description": "检测到电机状态变量MotorStatus（类型BOOL），但缺少电机故障报警（如过载、过热或启动失败）。设备状态报警未实现，可能导致未及时处理设备故障，违反设备保护需求和ISO 13849标准（要求关键设备状态监控）。",
+      "recommendation": "添加电机故障报警逻辑，例如基于额外输入信号（如过载继电器）触发报警；建议定义具体故障变量并链接到AlarmActive，确保报警可配置。",
+      "confidence": 0.8,
+      "source_shards": [
+        "data_def_001"
+      ],
+      "frequency": 1
+    },
+    {
+      "type": "missing_alarm",
+      "severity": "medium",
+      "location": "系统监控",
+      "description": "缺少系统级报警（如通信故障、I/O模块故障或电源异常）。系统报警缺失可能导致整体系统失效未被检测，违反设备保护需求和ISA-18.2标准（要求覆盖系统完整性）。",
+      "recommendation": "添加系统级报警逻辑，例如监控PLC通信状态和I/O健康；使用AlarmConfig数据类型使报警可配置，并链接到AlarmActive变量。",
+      "confidence": 0.8,
+      "source_shards": [
+        "data_def_001"
+      ],
+      "frequency": 1
+    },
+    {
+      "type": "missing_alarm",
+      "severity": "medium",
+      "location": "设备状态监控",
+      "description": "未检测设备状态报警，如电机故障或执行器异常。TempControl中的电机控制逻辑简单，无过载、过热或启动失败报警，增加设备损坏风险。",
+      "recommendation": "在电机控制回路中添加故障反馈（如过电流报警）；为关键设备实现预测性维护报警（如振动或效率下降）；遵循设备保护需求设置报警延迟以避免误触发。",
+      "confidence": 0.75,
+      "source_shards": [
+        "prog_logic_001"
+      ],
+      "frequency": 1
+    }
+  ],
+  "summary": "分析发现 11 个问题。其中 2 个严重问题。4 个高优先级问题。主要问题类型为缺失报警(6个)。建议优先处理高优先级问题。",
+  "overall_confidence": 0.8084848484848486,
+  "statistics": {
+    "total_shards": 2,
+    "successful_shards": 2,
+    "success_rate": 1.0,
+    "total_findings": 11,
+    "finding_types": {
+      "safety_issue": 2,
+      "missing_alarm": 6,
+      "logic_error": 2,
+      "existing_alarm": 1
+    },
+    "severity_counts": {
+      "critical": 2,
+      "high": 4,
+      "medium": 5
+    },
+    "average_confidence": 0.8545454545454546,
+    "total_processing_time": 238.00564312934875,
+    "average_processing_time": 119.00282156467438,
+    "total_tokens_used": 6455
+  },
+  "processing_info": {
+    "total_results": 2,
+    "successful_results": 2,
+    "failed_results": 0,
+    "failed_shard_ids": [],
+    "error_summary": {}
+  },
+  "timestamp": "2025-06-17T15:06:43.669853"
+}

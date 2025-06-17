@@ -1,0 +1,41 @@
+2025-06-17 14:59:41.154 | INFO     | __main__:analyze_file:44 - 开始分析文件: sample_plc.xml
+2025-06-17 14:59:41.155 | INFO     | __main__:analyze_file:58 - 步骤1: 解析XML文件...
+2025-06-17 14:59:41.156 | INFO     | src.xml_processor.parser:parse_file:66 - 开始解析XML文件: sample_plc.xml
+2025-06-17 14:59:41.160 | INFO     | src.xml_processor.parser:_extract_global_variables:119 - 提取全局变量...
+2025-06-17 14:59:41.162 | INFO     | src.xml_processor.parser:_extract_global_variables:147 - 提取到 4 个全局变量
+2025-06-17 14:59:41.163 | INFO     | src.xml_processor.parser:_extract_data_types:151 - 提取数据类型...
+2025-06-17 14:59:41.163 | INFO     | src.xml_processor.parser:_extract_data_types:178 - 提取到 1 个数据类型
+2025-06-17 14:59:41.164 | INFO     | src.xml_processor.parser:_extract_function_blocks:182 - 提取功能块...
+2025-06-17 14:59:41.164 | INFO     | src.xml_processor.parser:_extract_function_blocks:209 - 提取到 0 个功能块
+2025-06-17 14:59:41.165 | INFO     | src.xml_processor.parser:_extract_programs:213 - 提取程序...
+2025-06-17 14:59:41.165 | INFO     | src.xml_processor.parser:_extract_programs:240 - 提取到 2 个程序
+2025-06-17 14:59:41.165 | INFO     | src.xml_processor.parser:_analyze_dependencies:333 - 分析依赖关系...
+2025-06-17 14:59:41.166 | INFO     | src.xml_processor.parser:_analyze_dependencies:347 - 分析完成，共 7 个依赖关系
+2025-06-17 14:59:41.166 | INFO     | src.xml_processor.parser:_generate_shards:351 - 生成分片...
+2025-06-17 14:59:41.166 | INFO     | src.xml_processor.parser:_generate_shards:363 - 生成 2 个分片
+2025-06-17 14:59:41.166 | INFO     | src.xml_processor.parser:parse_file:87 - 解析完成，生成 2 个分片
+2025-06-17 14:59:41.169 | INFO     | src.xml_processor.parser:export_shards_to_json:580 - 分片导出完成，共 2 个文件保存到 demo_results\shards
+2025-06-17 14:59:41.170 | INFO     | __main__:analyze_file:70 - 步骤2: 使用DeepSeek R1分析 2 个分片...
+2025-06-17 14:59:41.170 | INFO     | __main__:analyze_file:98 - 处理批次 1/1
+2025-06-17 14:59:41.170 | INFO     | src.ai_engine.deepseek_client:analyze_shard_batch:59 - 开始批量分析 2 个分片，类型: alarm
+2025-06-17 14:59:41.777 | WARNING  | src.ai_engine.deepseek_client:_call_api:334 - API调用失败 (尝试 1/3): Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****a4bd is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}
+2025-06-17 14:59:41.778 | WARNING  | src.ai_engine.deepseek_client:_call_api:334 - API调用失败 (尝试 1/3): Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****a4bd is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}
+2025-06-17 14:59:43.838 | WARNING  | src.ai_engine.deepseek_client:_call_api:334 - API调用失败 (尝试 2/3): Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****a4bd is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}
+2025-06-17 14:59:43.839 | WARNING  | src.ai_engine.deepseek_client:_call_api:334 - API调用失败 (尝试 2/3): Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****a4bd is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}
+2025-06-17 14:59:47.902 | WARNING  | src.ai_engine.deepseek_client:_call_api:334 - API调用失败 (尝试 3/3): Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****a4bd is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}
+2025-06-17 14:59:47.904 | ERROR    | src.ai_engine.deepseek_client:analyze_single_shard:128 - 分析分片 prog_logic_001 时发生错误: Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****a4bd is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}
+2025-06-17 14:59:47.904 | WARNING  | src.ai_engine.deepseek_client:_call_api:334 - API调用失败 (尝试 3/3): Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****a4bd is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}
+2025-06-17 14:59:47.905 | INFO     | src.ai_engine.deepseek_client:analyze_shard_batch:77 - 分片 prog_logic_001 分析完成
+2025-06-17 14:59:47.905 | ERROR    | src.ai_engine.deepseek_client:analyze_single_shard:128 - 分析分片 data_def_001 时发生错误: Error code: 401 - {'error': {'message': 'Authentication Fails, Your api key: ****a4bd is invalid', 'type': 'authentication_error', 'param': None, 'code': 'invalid_request_error'}}
+2025-06-17 14:59:47.906 | INFO     | src.ai_engine.deepseek_client:analyze_shard_batch:77 - 分片 data_def_001 分析完成
+2025-06-17 14:59:47.907 | INFO     | src.ai_engine.deepseek_client:analyze_shard_batch:87 - 批量分析完成，成功: 0, 失败: 2
+2025-06-17 14:59:47.908 | INFO     | __main__:analyze_file:108 - 步骤3: 融合分析结果...
+2025-06-17 14:59:47.909 | INFO     | src.analysis.result_fusion:fuse_analysis_results:61 - 开始融合 2 个分析结果
+2025-06-17 14:59:47.910 | INFO     | src.analysis.result_fusion:fuse_analysis_results:65 - 成功结果: 0 / 2
+2025-06-17 14:59:47.910 | INFO     | __main__:analyze_file:112 - 步骤4: 生成报告...
+2025-06-17 14:59:47.911 | INFO     | src.analysis.result_fusion:export_results_to_json:454 - 结果已导出到 demo_results\analysis_report_alarm.json
+2025-06-17 14:59:47.914 | INFO     | src.analysis.result_fusion:generate_html_report:462 - HTML报告已生成: demo_results\analysis_report_alarm.html
+2025-06-17 14:59:47.914 | INFO     | __main__:analyze_file:124 - 分析完成! 总耗时: 6.76秒
+2025-06-17 14:59:47.914 | INFO     | __main__:analyze_file:125 - 发现 0 个问题
+2025-06-17 14:59:47.915 | INFO     | __main__:analyze_file:126 - 整体置信度: 0.00
+2025-06-17 14:59:47.915 | INFO     | __main__:analyze_file:127 - 报告已生成: demo_results\analysis_report_alarm.html

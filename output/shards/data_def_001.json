@@ -1,0 +1,61 @@
+{
+  "shard_id": "data_def_001",
+  "shard_type": "data_definition",
+  "elements": [
+    {
+      "name": "TempSensor_1",
+      "type": "GlobalVariable",
+      "content": "        <Variable Name=\"TempSensor_1\" Type=\"REAL\" Comment=\"温度传感器1\"/>",
+      "dependencies": [],
+      "line_start": 3,
+      "line_end": 3,
+      "size_estimate": 18
+    },
+    {
+      "name": "PressureSensor_1",
+      "type": "GlobalVariable",
+      "content": "        <Variable Name=\"PressureSensor_1\" Type=\"REAL\" Comment=\"压力传感器1\"/>",
+      "dependencies": [],
+      "line_start": 4,
+      "line_end": 4,
+      "size_estimate": 18
+    },
+    {
+      "name": "MotorStatus",
+      "type": "GlobalVariable",
+      "content": "        <Variable Name=\"MotorStatus\" Type=\"BOOL\" Comment=\"电机状态\"/>",
+      "dependencies": [],
+      "line_start": 5,
+      "line_end": 5,
+      "size_estimate": 18
+    },
+    {
+      "name": "AlarmActive",
+      "type": "GlobalVariable",
+      "content": "        <Variable Name=\"AlarmActive\" Type=\"BOOL\" Comment=\"报警激活\"/>",
+      "dependencies": [],
+      "line_start": 6,
+      "line_end": 6,
+      "size_estimate": 18
+    },
+    {
+      "name": "AlarmConfig",
+      "type": "DataType",
+      "content": "        <DataType Name=\"AlarmConfig\">\n            <Member Name=\"HighLimit\" Type=\"REAL\"/>\n            <Member Name=\"LowLimit\" Type=\"REAL\"/>\n            <Member Name=\"Enabled\" Type=\"BOOL\"/>\n        </DataType>",
+      "dependencies": [
+        "Name"
+      ],
+      "line_start": 10,
+      "line_end": 14,
+      "size_estimate": 90
+    }
+  ],
+  "context_info": {},
+  "dependencies": [
+    "Name"
+  ],
+  "line_start": 3,
+  "line_end": 14,
+  "total_lines": 9,
+  "token_estimate": 162
+}

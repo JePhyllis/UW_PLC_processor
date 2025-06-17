@@ -1,0 +1,35 @@
+2025-06-17 15:04:30.397 | INFO     | __main__:analyze_file:44 - 开始分析文件: sample_plc.xml
+2025-06-17 15:04:30.399 | INFO     | __main__:analyze_file:58 - 步骤1: 解析XML文件...
+2025-06-17 15:04:30.399 | INFO     | src.xml_processor.parser:parse_file:66 - 开始解析XML文件: sample_plc.xml
+2025-06-17 15:04:30.400 | INFO     | src.xml_processor.parser:_extract_global_variables:119 - 提取全局变量...
+2025-06-17 15:04:30.401 | INFO     | src.xml_processor.parser:_extract_global_variables:147 - 提取到 4 个全局变量
+2025-06-17 15:04:30.401 | INFO     | src.xml_processor.parser:_extract_data_types:151 - 提取数据类型...
+2025-06-17 15:04:30.402 | INFO     | src.xml_processor.parser:_extract_data_types:178 - 提取到 1 个数据类型
+2025-06-17 15:04:30.403 | INFO     | src.xml_processor.parser:_extract_function_blocks:182 - 提取功能块...
+2025-06-17 15:04:30.403 | INFO     | src.xml_processor.parser:_extract_function_blocks:209 - 提取到 0 个功能块
+2025-06-17 15:04:30.404 | INFO     | src.xml_processor.parser:_extract_programs:213 - 提取程序...
+2025-06-17 15:04:30.404 | INFO     | src.xml_processor.parser:_extract_programs:240 - 提取到 2 个程序
+2025-06-17 15:04:30.404 | INFO     | src.xml_processor.parser:_analyze_dependencies:333 - 分析依赖关系...
+2025-06-17 15:04:30.405 | INFO     | src.xml_processor.parser:_analyze_dependencies:347 - 分析完成，共 7 个依赖关系
+2025-06-17 15:04:30.405 | INFO     | src.xml_processor.parser:_generate_shards:351 - 生成分片...
+2025-06-17 15:04:30.405 | INFO     | src.xml_processor.parser:_generate_shards:363 - 生成 2 个分片
+2025-06-17 15:04:30.405 | INFO     | src.xml_processor.parser:parse_file:87 - 解析完成，生成 2 个分片
+2025-06-17 15:04:30.408 | INFO     | src.xml_processor.parser:export_shards_to_json:580 - 分片导出完成，共 2 个文件保存到 output\shards
+2025-06-17 15:04:30.409 | INFO     | __main__:analyze_file:70 - 步骤2: 使用DeepSeek R1分析 2 个分片...
+2025-06-17 15:04:30.410 | INFO     | __main__:analyze_file:98 - 处理批次 1/1
+2025-06-17 15:04:30.410 | INFO     | src.ai_engine.deepseek_client:analyze_shard_batch:59 - 开始批量分析 2 个分片，类型: alarm
+2025-06-17 15:06:15.165 | INFO     | src.ai_engine.deepseek_client:analyze_shard_batch:77 - 分片 prog_logic_001 分析完成
+2025-06-17 15:06:43.665 | INFO     | src.ai_engine.deepseek_client:analyze_shard_batch:77 - 分片 data_def_001 分析完成
+2025-06-17 15:06:43.666 | INFO     | src.ai_engine.deepseek_client:analyze_shard_batch:87 - 批量分析完成，成功: 2, 失败: 0
+2025-06-17 15:06:43.666 | INFO     | __main__:analyze_file:108 - 步骤3: 融合分析结果...
+2025-06-17 15:06:43.667 | INFO     | src.analysis.result_fusion:fuse_analysis_results:61 - 开始融合 2 个分析结果
+2025-06-17 15:06:43.667 | INFO     | src.analysis.result_fusion:fuse_analysis_results:65 - 成功结果: 2 / 2
+2025-06-17 15:06:43.667 | INFO     | src.analysis.result_fusion:_extract_findings:138 - 提取到 11 个原始发现
+2025-06-17 15:06:43.669 | INFO     | src.analysis.result_fusion:_deduplicate_findings:196 - 去重后剩余 11 个发现
+2025-06-17 15:06:43.669 | INFO     | __main__:analyze_file:112 - 步骤4: 生成报告...
+2025-06-17 15:06:43.671 | INFO     | src.analysis.result_fusion:export_results_to_json:454 - 结果已导出到 output\analysis_report_alarm.json
+2025-06-17 15:06:43.672 | INFO     | src.analysis.result_fusion:generate_html_report:462 - HTML报告已生成: output\analysis_report_alarm.html
+2025-06-17 15:06:43.672 | INFO     | __main__:analyze_file:124 - 分析完成! 总耗时: 133.27秒
+2025-06-17 15:06:43.672 | INFO     | __main__:analyze_file:125 - 发现 11 个问题
+2025-06-17 15:06:43.673 | INFO     | __main__:analyze_file:126 - 整体置信度: 0.81
+2025-06-17 15:06:43.673 | INFO     | __main__:analyze_file:127 - 报告已生成: output\analysis_report_alarm.html
