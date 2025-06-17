@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project>
+    <GlobalVariables>
+        <Variable Name="TempSensor_1" Type="REAL" Comment="温度传感器1"/>
+        <Variable Name="PressureSensor_1" Type="REAL" Comment="压力传感器1"/>
+        <Variable Name="MotorStatus" Type="BOOL" Comment="电机状态"/>
+        <Variable Name="AlarmActive" Type="BOOL" Comment="报警激活"/>
+    </GlobalVariables>
+    
+    <DataTypes>
+        <DataType Name="AlarmConfig">
+            <Member Name="HighLimit" Type="REAL"/>
+            <Member Name="LowLimit" Type="REAL"/>
+            <Member Name="Enabled" Type="BOOL"/>
+        </DataType>
+    </DataTypes>
+    
+    <Programs>
+        <Program Name="TempControl">
+            <Code>
+                // 温度控制逻辑
+                IF TempSensor_1 > 80.0 THEN
+                    AlarmActive := TRUE;
+                END_IF;
+                
+                // 电机控制
+                IF NOT AlarmActive THEN
+                    MotorStatus := TRUE;
+                ELSE
+                    MotorStatus := FALSE;
+                END_IF;
+            </Code>
+        </Program>
+        
+        <Program Name="PressureMonitor">
+            <Code>
+                // 压力监控逻辑
+                IF PressureSensor_1 > 5.0 THEN
+                    // 需要添加压力报警
+                    // TODO: 实现压力超限报警
+                END_IF;
+            </Code>
+        </Program>
+    </Programs>
+</Project>
